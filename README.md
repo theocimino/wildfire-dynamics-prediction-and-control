@@ -52,8 +52,28 @@ $\frac{\partial S}{\partial t} = rS(1-S) - C S e^{-\frac{E}{RU}}$
 - $rS(1-S)$ : Natural forest regrowth (logistic growth)
 - $- C S e^{-\frac{E}{RU}}$ : Fuel consumption (destruction by fire)    
 
+---
+## Limit Conditions
+
+
+In order to solve this system mathematically and numerically, the partial differential equations (PDEs) alone are insufficient, as they admit an infinite number of solutions. To ensure the problem is well-posed in the sense of Hadamard (meaning a solution exists, is unique, and depends continuously on the initial data), we must close the system with Initial and Boundary Conditions.
+
+**Initial Conditions ($t=0$):**   
+$U(x,y,0) = U_0(x,y)$ and $S(x,y,0) = S_0(x,y)$ define the starting state of the system, representing the initial ignition points and the initial forest density distribution.
+
+**Boundary Conditions (on $\partial \Omega$):**   
+We apply homogeneous Neumann boundary conditions ($\nabla U \cdot \vec{n} = 0$).     
+This serves a dual purpose:
+
+* Physically: It models an isolated system where heat flux across the boundaries is zero. The fire can neither escape the domain nor enter from the outside.
+
+* Mathematically: Coupled with the initial conditions, it closes the Cauchy problem, guaranteeing the existence and uniqueness of the solution for this parabolic reaction-diffusion system.
+
+---
+## Final System
 Finally we get the following system :    
-Let $\Omega \subset \mathbb{R}^2$ be the spatial domain (e.g., a rectangular forest) and $\partial \Omega$ its boundary. The dynamics are governed by the following system:
+Let $\Omega \subset \mathbb{R}^2$ be the spatial domain (e.g., a rectangular forest like  $\Omega = [-l,l]\times [-L,L] \quad \text{with }l,L \in \mathbb{R}$  ) and $\partial \Omega$ its boundary.   
+ The dynamics are governed by the following system:
 
 ```math
 \begin{cases}
