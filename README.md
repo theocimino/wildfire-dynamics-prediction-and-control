@@ -55,11 +55,9 @@ $\frac{\partial S}{\partial t} = rS(1-S) - C S e^{-\frac{E}{RU}}$
 Finally we get the following system :    
 Let $\Omega \subset \mathbb{R}^2$ be the spatial domain (e.g., a rectangular forest) and $\partial \Omega$ its boundary. The dynamics are governed by the following system:
 
-$$
-\begin{cases}
+$\begin{cases}
 \frac{\partial U}{\partial t} = k \Delta U - \vec{v} \cdot \nabla U + A S e^{-\frac{E}{RU}} - h (U - U_{amb}) & \text{in } \Omega \times (0, T] \\[10pt]
 \frac{\partial S}{\partial t} = rS(1-S) - C S e^{-\frac{E}{RU}} & \text{in } \Omega \times (0, T] \\[10pt]
 \nabla U \cdot \vec{n} = 0 & \text{on } \partial \Omega \times (0, T] \\[10pt]
 U(x,y,0) = U_0(x,y), \quad S(x,y,0) = S_0(x,y) & \text{in } \Omega
-\end{cases}
-$$
+\end{cases}$
