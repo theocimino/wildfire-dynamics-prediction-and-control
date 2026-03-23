@@ -21,8 +21,9 @@ TODO : add the stack overtime
 
 ## Theoretical Mathematical Formulation
 
-We consider a two-dimensional spatial domain defined by coordinates $x$ and $y$, and a one-dimensional time domain defined by $t$. 
-Due to the constraints of our chosen numerical approach (the Finite Difference Method), we require a simple spatial geometry. Therefore, $x$ and $y$ are defined within a rectangular or square domain.
+We consider $\Omega \subset \mathbb{R}^2$ a two-dimensional spatial domain defined by coordinates $x$ and $y$, and a one-dimensional time domain defined by $t$. 
+Due to the constraints of our chosen numerical approach (the Finite Difference Method), we require a simple spatial geometry. Therefore, $x$ and $y$ are defined within a rectangular or square domain, $\Omega = [-l,l]\times [-L,L] \quad \text{with }l,L \in \mathbb{R}$   
+Thus we also consider the timespace as ${t \in [0,T]}$
 
 We model the dynamics of two main state variables:
 - $U(x,y,t)$ : the local normalized temperature.
@@ -32,14 +33,8 @@ We model the dynamics of two main state variables:
 
 ## Heat Equation (Fire Propagation)
 
-$$
-\frac{\partial U}{\partial t}
-=
-k \Delta U
-- \vec{v} \cdot \nabla U
-+ A S e^{-\frac{E}{RU}}
-- h (U - U_{amb})
-$$
+
+$\frac{\partial U}{\partial t} = k \Delta U - \vec{v} \cdot \nabla U + A S e^{-\frac{E}{RU}} - h (U - U_{amb})$
 
 **Term interpretation:**
 - $k \Delta U$ : Diffusion (heat radiation and conduction)
@@ -51,13 +46,20 @@ $$
 
 ## Fuel Equation (Forest Dynamics)
 
-$$
-\frac{\partial S}{\partial t}
-=
-rS(1-S)
-- C S e^{-\frac{E}{RU}}
-$$
+$\frac{\partial S}{\partial t} = rS(1-S) - C S e^{-\frac{E}{RU}}$
 
 **Term interpretation:**
 - $rS(1-S)$ : Natural forest regrowth (logistic growth)
-- $- C S e^{-\frac{E}{RU}}$ : Fuel consumption (destruction by fire)
+- $- C S e^{-\frac{E}{RU}}$ : Fuel consumption (destruction by fire)    
+
+Finally we get the following system :    
+Let $\Omega \subset \mathbb{R}^2$ be the spatial domain (e.g., a rectangular forest) and $\partial \Omega$ its boundary. The dynamics are governed by the following system:
+
+$
+\begin{cases}
+\frac{\partial U}{\partial t} = k \Delta U - \vec{v} \cdot \nabla U + A S e^{-\frac{E}{RU}} - h (U - U_{amb}) & \text{in } \Omega \times (0, T] \\[10pt]
+\frac{\partial S}{\partial t} = rS(1-S) - C S e^{-\frac{E}{RU}} & \text{in } \Omega \times (0, T] \\[10pt]
+\nabla U \cdot \vec{n} = 0 & \text{on } \partial \Omega \times (0, T] \\[10pt]
+U(x,y,0) = U_0(x,y), \quad S(x,y,0) = S_0(x,y) & \text{in } \Omega
+\end{cases}
+$
